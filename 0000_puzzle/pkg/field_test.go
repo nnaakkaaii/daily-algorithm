@@ -129,33 +129,36 @@ func TestField_Render(t *testing.T) {
 func TestField_Scenario(t *testing.T) {
 	t.Parallel()
 
-	f := NewField(
-		[][]int{
-			{1, 2, 3, 4},
-			{5, 6, 7, 8},
-			{9, 10, 0, 12},
-			{13, 14, 11, 15},
-		},
-		4,
-	)
-	if diff := cmp.Diff([]int{10, 7, 12, 11}, f.Swappable()); diff != "" {
-		t.Error(diff)
-	}
-	if diff := cmp.Diff(2, f.Manhattan()); diff != "" {
-		t.Error(diff)
-	}
-	f.Swap(11)
-	if diff := cmp.Diff([]int{14, 11, 15}, f.Swappable()); diff != "" {
-		t.Error(diff)
-	}
-	if diff := cmp.Diff(1, f.Manhattan()); diff != "" {
-		t.Error(diff)
-	}
-	f.Swap(15)
-	if diff := cmp.Diff([]int{15, 12}, f.Swappable()); diff != "" {
-		t.Error(diff)
-	}
-	if diff := cmp.Diff(0, f.Manhattan()); diff != "" {
-		t.Error(diff)
-	}
+	t.Run("Field : scenario test", func(t *testing.T) {
+		t.Parallel()
+		f := NewField(
+			[][]int{
+				{1, 2, 3, 4},
+				{5, 6, 7, 8},
+				{9, 10, 0, 12},
+				{13, 14, 11, 15},
+			},
+			4,
+		)
+		if diff := cmp.Diff([]int{10, 7, 12, 11}, f.Swappable()); diff != "" {
+			t.Error(diff)
+		}
+		if diff := cmp.Diff(2, f.Manhattan()); diff != "" {
+			t.Error(diff)
+		}
+		f.Swap(11)
+		if diff := cmp.Diff([]int{14, 11, 15}, f.Swappable()); diff != "" {
+			t.Error(diff)
+		}
+		if diff := cmp.Diff(1, f.Manhattan()); diff != "" {
+			t.Error(diff)
+		}
+		f.Swap(15)
+		if diff := cmp.Diff([]int{15, 12}, f.Swappable()); diff != "" {
+			t.Error(diff)
+		}
+		if diff := cmp.Diff(0, f.Manhattan()); diff != "" {
+			t.Error(diff)
+		}
+	})
 }
