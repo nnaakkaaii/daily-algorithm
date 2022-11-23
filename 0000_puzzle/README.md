@@ -39,3 +39,9 @@ $ go run main.go -algorithm IDAStar < data/1.in
 ```shell
 $ go run main.go -algorithm AStar < data/2.in
 ```
+
+## 関連キーワード
+
+* [A<sup>*</sup>](../docs/a-star/README.md)
+* [IDA<sup>*</sup>](../docs/ida-star/README.md)
+* [Iterative Deepening](../docs/iterative-deepening/README.md)
