@@ -35,3 +35,7 @@
 ```shell
 $ go run main.go -algorithm IDAStar < data/1.in
 ```
+
+```shell
+$ go run main.go -algorithm AStar < data/2.in
+```

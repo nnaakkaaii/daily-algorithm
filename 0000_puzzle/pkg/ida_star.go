@@ -42,6 +42,6 @@ func (d *IDAStar) IterativeSearch(f Field) int {
 		if r != -1 {
 			return r
 		}
-		i *= 2
+		i += 1
 	}
 }

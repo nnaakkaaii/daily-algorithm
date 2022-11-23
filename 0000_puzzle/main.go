@@ -4,23 +4,26 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"github.com/nnaakkaaii/daily-algorithm/0000_puzzle/pkg"
 	"io"
 	"os"
+
+	"github.com/nnaakkaaii/daily-algorithm/0000_puzzle/pkg"
 )
 
-const FieldSize = 4
+const FieldSize = 3
 
 type Algorithm string
 
 const (
-	IterativeDeepeningAlgorithm Algorithm = "IterativeSearch"
+	IterativeDeepeningAlgorithm Algorithm = "IterativeDeepening"
 	IDAStarAlgorithm            Algorithm = "IDAStar"
+	AStarAlgorithm              Algorithm = "AStar"
 )
 
 var algorithms = map[Algorithm]pkg.SearchAlgorithm{
 	IterativeDeepeningAlgorithm: pkg.NewIterativeDeepening(),
 	IDAStarAlgorithm:            pkg.NewIDAStar(),
+	AStarAlgorithm:              pkg.NewAStar(),
 }
 
 func main() {
