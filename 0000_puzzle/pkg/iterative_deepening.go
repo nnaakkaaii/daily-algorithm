@@ -4,7 +4,7 @@ type IterativeDeepening struct {
 	Memory *Stack
 }
 
-func NewIterativeDeepening() SearchAlgorithm {
+func NewIterativeDeepening() *IterativeDeepening {
 	return &IterativeDeepening{Memory: NewStack()}
 }
 

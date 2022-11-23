@@ -4,7 +4,7 @@ type IDAStar struct {
 	Memory *Stack
 }
 
-func NewIDAStar() SearchAlgorithm {
+func NewIDAStar() *IDAStar {
 	return &IDAStar{Memory: NewStack()}
 }
 
