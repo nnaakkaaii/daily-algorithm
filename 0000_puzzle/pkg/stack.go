@@ -21,7 +21,8 @@ func (s *Stack) Pop() *Node {
 	if len(s.Nodes) == 0 {
 		return nil
 	}
-	n := s.Nodes[len(s.Nodes)-1]
-	s.Nodes = s.Nodes[:len(s.Nodes)-1]
+	ind := len(s.Nodes) - 1
+	n := s.Nodes[ind]
+	s.Nodes = s.Nodes[:ind]
 	return n
 }
