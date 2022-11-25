@@ -6,11 +6,13 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestAStar_IterativeSearch(t *testing.T) {
+func TestSimpleSearch_Search(t *testing.T) {
 	t.Parallel()
 
 	type args struct {
-		f Field
+		list  List
+		field Field
+		limit int
 	}
 	tests := []struct {
 		name string
@@ -18,8 +20,9 @@ func TestAStar_IterativeSearch(t *testing.T) {
 		want int
 	}{
 		{
-			"successful case",
+			"successful case: ",
 			args{
+				NewStack(),
 				*NewField(
 					[][]int{
 						{1, 2, 3, 4},
@@ -29,6 +32,7 @@ func TestAStar_IterativeSearch(t *testing.T) {
 					},
 					4,
 				),
+				20,
 			},
 			8,
 		},

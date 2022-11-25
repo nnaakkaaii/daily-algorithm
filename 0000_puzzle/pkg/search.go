@@ -1,5 +1,5 @@
 package pkg
 
 type SearchAlgorithm interface {
-	IterativeSearch(f Field) int
+	Search(f Field, limit int) int
 }
