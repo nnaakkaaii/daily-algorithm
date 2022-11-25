@@ -1,47 +1,21 @@
 package pkg
 
 type IterativeDeepening struct {
-	Memory *Stack
+	IterSearch Search
 }
 
-func NewIterativeDeepening() *IterativeDeepening {
-	return &IterativeDeepening{Memory: NewStack()}
+func NewIterativeDeepening(l List) Search {
+	return &IterativeDeepening{
+		IterSearch: NewSimpleSearch(l),
+	}
 }
 
 func (d *IterativeDeepening) Search(f Field, limit int) int {
-	for _, id := range f.Swappable() {
-		d.Memory.Push(id, f.Copy())
-	}
-
-	for {
-		if f.Manhattan() == 0 {
-			return f.S
-		}
-		n := d.Memory.Pop()
-		if n == nil {
-			return -1
-		}
-		f = n.Field
-		f.Swap(n.ID)
-		if f.S >= limit {
-			continue
-		}
-		for _, id := range f.Swappable() {
-			if id == n.ID {
-				continue
-			}
-			d.Memory.Push(id, f.Copy())
-		}
-	}
-}
-
-func (d *IterativeDeepening) IterativeSearch(f Field) int {
-	i := 1
-	for {
-		r := d.Search(f, i)
+	for i := 1; i <= limit; i++ {
+		r := d.IterSearch.Search(f, i)
 		if r != -1 {
 			return r
 		}
-		i += 1
 	}
+	return -1
 }

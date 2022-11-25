@@ -14,35 +14,35 @@ func TestSimpleSearch_Search(t *testing.T) {
 		field Field
 		limit int
 	}
+	f := *NewField([][]int{{1, 2, 3}, {4, 0, 6}, {7, 5, 8}}, 3)
+
 	tests := []struct {
 		name string
 		args args
 		want int
 	}{
 		{
-			"successful case: ",
-			args{
-				NewStack(),
-				*NewField(
-					[][]int{
-						{1, 2, 3, 4},
-						{6, 7, 8, 0},
-						{5, 10, 11, 12},
-						{9, 13, 14, 15},
-					},
-					4,
-				),
-				20,
-			},
-			8,
+			"successful case: DFS",
+			args{NewStack(), f, 5},
+			2,
+		},
+		{
+			"successful case: BFS",
+			args{NewQueue(), f, 5},
+			2,
+		},
+		{
+			"successful case: A Star",
+			args{NewPriorityQueue(), f, 5},
+			2,
 		},
 	}
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			d := NewAStar()
+			s := NewSimpleSearch(tc.args.list)
 
-			if diff := cmp.Diff(tc.want, d.IterativeSearch(tc.args.f)); diff != "" {
+			if diff := cmp.Diff(tc.want, s.Search(tc.args.field, tc.args.limit)); diff != "" {
 				t.Error(diff)
 			}
 		})

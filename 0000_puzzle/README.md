@@ -33,11 +33,11 @@
 ## 実行例
 
 ```shell
-$ go run main.go -algorithm IDAStar < data/1.in
+$ go run main.go -search simple-search -list priority-queue < data/1.in
 ```
 
 ```shell
-$ go run main.go -algorithm AStar < data/2.in
+$ go run main.go -search iterative-deepening -list stack < data/2.in
 ```
 
 ## 関連キーワード

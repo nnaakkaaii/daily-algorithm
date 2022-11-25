@@ -10,34 +10,54 @@ import (
 	"github.com/nnaakkaaii/daily-algorithm/0000_puzzle/pkg"
 )
 
-const FieldSize = 3
-
-type Algorithm string
-
 const (
-	IterativeDeepeningAlgorithm Algorithm = "IterativeDeepening"
-	IDAStarAlgorithm            Algorithm = "IDAStar"
-	AStarAlgorithm              Algorithm = "AStar"
+	FieldSize = 3
+	MaxDepth  = 100
 )
 
-var algorithms = map[Algorithm]pkg.SearchAlgorithm{
-	IterativeDeepeningAlgorithm: pkg.NewIterativeDeepening(),
-	IDAStarAlgorithm:            pkg.NewIDAStar(),
-	AStarAlgorithm:              pkg.NewAStar(),
+type Search string
+
+const (
+	SimpleSearch       Search = "simple-search"
+	IterativeDeepening Search = "iterative-deepening"
+)
+
+var searches = map[Search]func(pkg.List) pkg.Search{
+	SimpleSearch:       pkg.NewSimpleSearch,
+	IterativeDeepening: pkg.NewIterativeDeepening,
+}
+
+type List string
+
+const (
+	Stack         List = "stack"
+	Queue         List = "queue"
+	PriorityQueue List = "priority-queue"
+)
+
+var lists = map[List]pkg.List{
+	Stack:         pkg.NewStack(),
+	Queue:         pkg.NewQueue(),
+	PriorityQueue: pkg.NewPriorityQueue(),
 }
 
 func main() {
-	var algorithm = flag.String(
-		"algorithm",
-		"IDAStar",
-		"IterativeDeepening|IDAStar",
+	var search = flag.String(
+		"search",
+		"simple-search",
+		"simple-search|iterative-search",
+	)
+	var list = flag.String(
+		"list",
+		"priority-queue",
+		"stack|queue|priority-queue",
 	)
 	flag.Parse()
 
-	realMain(os.Stdout, os.Stdin, Algorithm(*algorithm))
+	realMain(os.Stdout, os.Stdin, Search(*search), List(*list))
 }
 
-func realMain(w io.Writer, r io.Reader, algorithm Algorithm) {
+func realMain(w io.Writer, r io.Reader, search Search, list List) {
 	br := bufio.NewReader(r)
 	bw := bufio.NewWriter(w)
 	defer bw.Flush()
@@ -54,7 +74,7 @@ func realMain(w io.Writer, r io.Reader, algorithm Algorithm) {
 	}
 
 	f := pkg.NewField(mat, FieldSize)
-	result := algorithms[algorithm].IterativeSearch(*f)
+	result := searches[search](lists[list]).Search(*f, MaxDepth)
 
 	fmt.Fprintln(bw, result)
 }

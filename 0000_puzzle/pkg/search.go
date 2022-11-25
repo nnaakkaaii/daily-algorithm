@@ -1,5 +1,5 @@
 package pkg
 
-type SearchAlgorithm interface {
+type Search interface {
 	Search(f Field, limit int) int
 }

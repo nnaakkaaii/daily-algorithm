@@ -14,18 +14,22 @@ func TestPriorityQueue_Scenario(t *testing.T) {
 
 		pq := NewPriorityQueue()
 
-		pq.Push(1, Field{}, 3)
-		pq.Push(2, Field{}, 4)
-		pq.Push(3, Field{}, 2)
-		pq.Push(4, Field{}, 1)
-		pq.Push(5, Field{}, 5)
+		pq.Push(&Node{1, Field{}, 3})
+		pq.Push(&Node{2, Field{}, 4})
+		pq.Push(&Node{3, Field{}, 2})
+		pq.Push(&Node{4, Field{}, 1})
+		pq.Push(&Node{5, Field{}, 5})
 
 		v := make([]int, 0)
 		for {
 			if pq.IsEmpty() {
 				break
 			}
-			v = append(v, pq.Pop().ID)
+			n, ok := pq.Pop().(*Node)
+			if !ok {
+				t.Fatal("unknown type")
+			}
+			v = append(v, n.ID)
 		}
 
 		if diff := cmp.Diff([]int{4, 3, 1, 2, 5}, v); diff != "" {
