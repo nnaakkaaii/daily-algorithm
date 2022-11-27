@@ -13,6 +13,7 @@ import (
 const (
 	FieldSize = 3
 	MaxDepth  = 100
+	BeamWidth = 30
 )
 
 type Search string
@@ -30,15 +31,17 @@ var searches = map[Search]func(pkg.List) pkg.Search{
 type List string
 
 const (
-	Stack         List = "stack"
-	Queue         List = "queue"
-	PriorityQueue List = "priority-queue"
+	Stack                List = "stack"
+	Queue                List = "queue"
+	PriorityQueue        List = "priority-queue"
+	LimitedPriorityQueue List = "limited-priority-queue"
 )
 
 var lists = map[List]pkg.List{
-	Stack:         pkg.NewStack(),
-	Queue:         pkg.NewQueue(),
-	PriorityQueue: pkg.NewPriorityQueue(),
+	Stack:                pkg.NewStack(),
+	Queue:                pkg.NewQueue(),
+	PriorityQueue:        pkg.NewPriorityQueue(),
+	LimitedPriorityQueue: pkg.NewLimitedPriorityQueue(BeamWidth),
 }
 
 func main() {

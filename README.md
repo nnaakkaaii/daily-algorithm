@@ -9,3 +9,4 @@
 * [Iterative Deepening](./docs/iterative-deepening/README.md)
 * [IDA<sup>*</sup>](./docs/ida-star/README.md)
 * [A<sup>*</sup>](./docs/a-star/README.md)
+* [Beam Search](./docs/beam-search/README.md)

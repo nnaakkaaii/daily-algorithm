@@ -36,6 +36,11 @@ func TestSimpleSearch_Search(t *testing.T) {
 			args{NewPriorityQueue(), f, 5},
 			2,
 		},
+		{
+			"successful case: Beam Search",
+			args{NewLimitedPriorityQueue(10), f, 5},
+			2,
+		},
 	}
 
 	for _, tc := range tests {

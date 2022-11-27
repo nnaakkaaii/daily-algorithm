@@ -40,8 +40,15 @@ $ go run main.go -search simple-search -list priority-queue < data/1.in
 $ go run main.go -search iterative-deepening -list stack < data/2.in
 ```
 
+## 実装の詳細
+
+[こちら](./pkg/README.md)でアルゴリズムとデータ構造の関係を解説
+
 ## 関連キーワード
 
-* [A<sup>*</sup>](../docs/a-star/README.md)
-* [IDA<sup>*</sup>](../docs/ida-star/README.md)
+* [Depth First Search](../docs/depth-first-search/README.md)
+* [Breadth First Search](../docs/breadth-first-search/README.md)
 * [Iterative Deepening](../docs/iterative-deepening/README.md)
+* [IDA<sup>*</sup>](../docs/ida-star/README.md)
+* [A<sup>*</sup>](../docs/a-star/README.md)
+* [Beam Search](../docs/beam-search/README.md)
