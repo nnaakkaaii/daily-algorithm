@@ -6,12 +6,13 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestChange_Solve(t *testing.T) {
+func TestKnapsack_Solve(t *testing.T) {
 	t.Parallel()
 
 	type args struct {
-		coins []int
-		total int
+		values    []int
+		weights   []int
+		maxWeight int
 	}
 	tests := []struct {
 		name string
@@ -21,10 +22,11 @@ func TestChange_Solve(t *testing.T) {
 		{
 			name: "successful case",
 			args: args{
-				coins: []int{1, 2, 7, 8, 12, 50},
-				total: 15,
+				values:    []int{4, 5, 2, 8},
+				weights:   []int{2, 2, 1, 3},
+				maxWeight: 5,
 			},
-			want: 2,
+			want: 13,
 		},
 	}
 
@@ -32,8 +34,8 @@ func TestChange_Solve(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
 
-			x := NewChange(tc.args.coins)
-			actual := x.Solve(tc.args.total)
+			x := NewKnapsack(tc.args.values, tc.args.weights)
+			actual := x.Solve(tc.args.maxWeight)
 
 			if diff := cmp.Diff(tc.want, actual); diff != "" {
 				t.Error(diff)

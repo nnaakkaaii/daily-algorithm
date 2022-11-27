@@ -14,3 +14,7 @@
 ## [0001 : coin changing](./0001_coin-changing/README.md)
 
 * [Dynamic Programming](./docs/dynamic-programming/README.md)
+
+## [0002 : knapsack](./0002_knapsack/README.md)
+
+* [Knapsack](./docs/dynamic-programming/README.md)

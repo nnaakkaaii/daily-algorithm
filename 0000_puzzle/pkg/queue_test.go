@@ -1,8 +1,9 @@
 package pkg
 
 import (
-	"github.com/google/go-cmp/cmp"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestQueue_Scenario(t *testing.T) {

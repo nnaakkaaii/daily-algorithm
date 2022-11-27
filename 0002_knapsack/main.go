@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/nnaakkaaii/daily-algorithm/0001_coin-changing/pkg"
+	"github.com/nnaakkaaii/daily-algorithm/0002_knapsack/pkg"
 )
 
 func main() {
@@ -21,17 +21,20 @@ func realMain(w io.Writer, r io.Reader) {
 	var n int
 	fmt.Fscan(br, &n)
 
-	var m int
-	fmt.Fscan(br, &m)
+	var mw int
+	fmt.Fscan(br, &mw)
 
-	coins := make([]int, 0, m)
-	for i := 0; i < m; i++ {
+	vs := make([]int, 0, n)
+	ws := make([]int, 0, n)
+	for i := 0; i < n; i++ {
 		var x int
 		fmt.Fscan(br, &x)
-		coins = append(coins, x)
+		vs = append(vs, x)
+		fmt.Fscan(br, &x)
+		ws = append(ws, x)
 	}
 
-	result := pkg.NewChange(coins).Solve(n)
+	result := pkg.NewKnapsack(vs, ws).Solve(mw)
 
 	fmt.Fprintln(bw, result)
 }
